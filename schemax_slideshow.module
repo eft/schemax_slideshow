@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the schemax_slideshow feature.
+ */
+
+include_once 'schemax_slideshow.features.inc';
