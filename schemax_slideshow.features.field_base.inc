@@ -37,34 +37,34 @@ function schemax_slideshow_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_image'
-  $field_bases['field_image'] = array(
+  // Exported field_base: 'field_schemax_link'
+  $field_bases['field_schemax_link'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_image',
-    'foreign keys' => array(
-      'fid' => array(
-        'columns' => array(
-          'fid' => 'fid',
-        ),
-        'table' => 'file_managed',
-      ),
-    ),
-    'indexes' => array(
-      'fid' => array(
-        0 => 'fid',
-      ),
-    ),
+    'field_name' => 'field_schemax_link',
+    'foreign keys' => array(),
+    'indexes' => array(),
     'locked' => 0,
-    'module' => 'image',
+    'module' => 'link',
     'settings' => array(
-      'default_image' => 0,
-      'uri_scheme' => 'public',
+      'attributes' => array(
+        'class' => '',
+        'rel' => '',
+        'target' => 'default',
+      ),
+      'display' => array(
+        'url_cutoff' => 80,
+      ),
+      'enable_tokens' => 1,
+      'title' => 'optional',
+      'title_maxlength' => 128,
+      'title_value' => '',
+      'url' => 0,
     ),
     'translatable' => 0,
-    'type' => 'image',
+    'type' => 'link_field',
   );
 
   // Exported field_base: 'field_schemax_slides'
@@ -74,14 +74,7 @@ function schemax_slideshow_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_schemax_slides',
-    'foreign keys' => array(
-      'eck_slide' => array(
-        'columns' => array(
-          'target_id' => 'id',
-        ),
-        'table' => 'eck_slide',
-      ),
-    ),
+    'foreign keys' => array(),
     'indexes' => array(
       'target_id' => array(
         0 => 'target_id',

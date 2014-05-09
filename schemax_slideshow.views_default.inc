@@ -29,18 +29,40 @@ function schemax_slideshow_views_default_views() {
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['style_plugin'] = 'flexslider';
+  $handler->display->display_options['style_options']['captionfield'] = 'title_1';
   $handler->display->display_options['row_plugin'] = 'fields';
   /* Relationship: Entity Reference: Referenced Entity */
   $handler->display->display_options['relationships']['field_schemax_slides_target_id']['id'] = 'field_schemax_slides_target_id';
   $handler->display->display_options['relationships']['field_schemax_slides_target_id']['table'] = 'field_data_field_schemax_slides';
   $handler->display->display_options['relationships']['field_schemax_slides_target_id']['field'] = 'field_schemax_slides_target_id';
   $handler->display->display_options['relationships']['field_schemax_slides_target_id']['required'] = TRUE;
+  /* Field: Slide: Title */
+  $handler->display->display_options['fields']['title_1']['id'] = 'title_1';
+  $handler->display->display_options['fields']['title_1']['table'] = 'eck_slide';
+  $handler->display->display_options['fields']['title_1']['field'] = 'title';
+  $handler->display->display_options['fields']['title_1']['relationship'] = 'field_schemax_slides_target_id';
+  $handler->display->display_options['fields']['title_1']['label'] = '';
+  $handler->display->display_options['fields']['title_1']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['title_1']['element_label_colon'] = FALSE;
+  /* Field: Slide: Link */
+  $handler->display->display_options['fields']['field_schemax_link_1']['id'] = 'field_schemax_link_1';
+  $handler->display->display_options['fields']['field_schemax_link_1']['table'] = 'field_data_field_schemax_link';
+  $handler->display->display_options['fields']['field_schemax_link_1']['field'] = 'field_schemax_link';
+  $handler->display->display_options['fields']['field_schemax_link_1']['relationship'] = 'field_schemax_slides_target_id';
+  $handler->display->display_options['fields']['field_schemax_link_1']['label'] = '';
+  $handler->display->display_options['fields']['field_schemax_link_1']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_schemax_link_1']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_schemax_link_1']['click_sort_column'] = 'url';
+  $handler->display->display_options['fields']['field_schemax_link_1']['type'] = 'link_plain';
   /* Field: Field: Image */
   $handler->display->display_options['fields']['field_image']['id'] = 'field_image';
   $handler->display->display_options['fields']['field_image']['table'] = 'field_data_field_image';
   $handler->display->display_options['fields']['field_image']['field'] = 'field_image';
   $handler->display->display_options['fields']['field_image']['relationship'] = 'field_schemax_slides_target_id';
   $handler->display->display_options['fields']['field_image']['label'] = '';
+  $handler->display->display_options['fields']['field_image']['alter']['make_link'] = TRUE;
+  $handler->display->display_options['fields']['field_image']['alter']['path'] = '[field_schemax_link_1]';
+  $handler->display->display_options['fields']['field_image']['alter']['trim_whitespace'] = TRUE;
   $handler->display->display_options['fields']['field_image']['element_type'] = '0';
   $handler->display->display_options['fields']['field_image']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_image']['element_wrapper_type'] = '0';
@@ -52,16 +74,6 @@ function schemax_slideshow_views_default_views() {
   );
   $handler->display->display_options['fields']['field_image']['delta_offset'] = '0';
   $handler->display->display_options['fields']['field_image']['field_api_classes'] = TRUE;
-  /* Field: Slide: Description */
-  $handler->display->display_options['fields']['field_description']['id'] = 'field_description';
-  $handler->display->display_options['fields']['field_description']['table'] = 'field_data_field_description';
-  $handler->display->display_options['fields']['field_description']['field'] = 'field_description';
-  $handler->display->display_options['fields']['field_description']['relationship'] = 'field_schemax_slides_target_id';
-  /* Field: Slide: Title */
-  $handler->display->display_options['fields']['title_1']['id'] = 'title_1';
-  $handler->display->display_options['fields']['title_1']['table'] = 'eck_slide';
-  $handler->display->display_options['fields']['title_1']['field'] = 'title';
-  $handler->display->display_options['fields']['title_1']['relationship'] = 'field_schemax_slides_target_id';
   /* Sort criterion: Content: Post date */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'node';
@@ -78,6 +90,29 @@ function schemax_slideshow_views_default_views() {
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page_1');
   $handler->display->display_options['path'] = 'slideshow';
+
+  /* Display: Content pane */
+  $handler = $view->new_display('panel_pane', 'Content pane', 'panel_pane_1');
+  $translatables['schemax_slide_show'] = array(
+    t('Master'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('« first'),
+    t('‹ previous'),
+    t('next ›'),
+    t('last »'),
+    t('Slide entity referenced from field_schemax_slides'),
+    t('Page'),
+    t('Content pane'),
+    t('View panes'),
+  );
   $export['schemax_slide_show'] = $view;
 
   return $export;

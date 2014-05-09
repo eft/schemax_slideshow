@@ -5,6 +5,15 @@
  */
 
 /**
+ * Implements hook_ctools_plugin_api().
+ */
+function schemax_slideshow_ctools_plugin_api($module = NULL, $api = NULL) {
+  if ($module == "strongarm" && $api == "strongarm") {
+    return array("version" => "1");
+  }
+}
+
+/**
  * Implements hook_views_api().
  */
 function schemax_slideshow_views_api($module = NULL, $api = NULL) {
@@ -21,6 +30,24 @@ function schemax_slideshow_eck_bundle_info() {
       'entity_type' => 'slide',
       'name' => 'slide',
       'label' => 'Slide',
+      'config' => array(
+        'extra_fields' => array(
+          'title' => array(
+            'form' => array(
+              'label' => 'Title',
+              'description' => '',
+              'widget' => array(
+                'type' => 'text',
+                'settings' => array(
+                  'size' => 60,
+                  'max_length' => 255,
+                ),
+              ),
+              'default_value' => '',
+            ),
+          ),
+        ),
+      ),
     ),
   );
   return $items;
@@ -39,26 +66,31 @@ function schemax_slideshow_eck_entity_type_info() {
           'label' => 'Title',
           'type' => 'text',
           'behavior' => 'title',
+          'schema' => NULL,
         ),
         'uid' => array(
           'label' => 'Author',
           'type' => 'integer',
           'behavior' => 'author',
+          'schema' => NULL,
         ),
         'created' => array(
           'label' => 'Created',
           'type' => 'integer',
           'behavior' => 'created',
+          'schema' => NULL,
         ),
         'changed' => array(
           'label' => 'Changed',
           'type' => 'integer',
           'behavior' => 'changed',
+          'schema' => NULL,
         ),
         'language' => array(
           'label' => 'Entity language',
           'type' => 'language',
           'behavior' => 'language',
+          'schema' => NULL,
         ),
       ),
     ),
